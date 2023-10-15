@@ -1,0 +1,23 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "API-client-credentials.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZainAmjad68/scripts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZainAmjad68/scripts/issues"
+  },
+  "homepage": "https://github.com/ZainAmjad68/scripts#readme",
+  "dependencies": {
+    "randomatic": "^3.1.1"
+  }
+}
