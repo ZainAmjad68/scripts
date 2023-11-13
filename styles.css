@@ -15,3 +15,24 @@ body {
     font-weight: bold;
     font-size: 1.2em;
 }
+
+.facilities-list {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.facilities-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.facilities-list li {
+    margin-bottom: 5px;
+}
+
+.credentials-output {
+    margin-top: 20px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}

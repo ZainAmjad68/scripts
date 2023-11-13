@@ -1,11 +1,37 @@
+let facilitiesArray = [];
+
+function addFacility() {
+    const facilityInput = document.getElementById('facilityInput');
+    const facilityValue = facilityInput.value.trim();
+    if (facilityValue) {
+        facilitiesArray.push({ facilityId: facilityValue });
+        facilityInput.value = '';
+        updateFacilitiesList();
+    }
+}
+
+function updateFacilitiesList() {
+    const facilitiesContainer = document.getElementById('facilitiesContainer');
+    const facilitiesList = facilitiesArray.map(facility => facility.facilityId).join(', ');
+
+    facilitiesContainer.innerHTML = `
+        <input type="text" id="facilityInput">
+        <button onclick="addFacility()">Add Facility</button>
+        <div class="facilities-list">
+            <strong>Facilities:</strong>
+            <ul>
+                ${facilitiesArray.map(facility => `<li>${facility.facilityId}</li>`).join('')}
+            </ul>
+        </div>
+    `;
+}
+
 function generateClientCredentials() {
     const clientName = document.getElementById('clientName').value;
     const applicationDescription = document.getElementById('applicationDescription').value;
-    const facilities = document.getElementById('facilities').value.split(',').map(facility => ({ facilityId: facility.trim() }));
-
-    const password = generateRandomPassword(16); // Using the provided password generator function
-    const clientId = clientName.toLowerCase() + randomString(26);
-    const clientSecret = randomString(50);
+    const password = randomStringGenerator(16); // Using the provided password generator function
+    const clientId = clientName.toLowerCase() + randomStringGenerator(26);
+    const clientSecret = randomStringGenerator(50);
 
     const clientData = {
         password: password,
@@ -15,7 +41,7 @@ function generateClientCredentials() {
         applicationDescription: applicationDescription,
         channelName: applicationDescription + ' - Ticket Number', // Update with actual ticket number
         clientSecret: clientSecret,
-        facilities: facilities,
+        facilities: facilitiesArray,
         applicationName: applicationDescription, // Assuming applicationName should be the same as channelName
         clientGrants: [
             "client_credentials"
@@ -26,12 +52,12 @@ function generateClientCredentials() {
     const output = JSON.stringify({
         client_id: clientId,
         client_data: clientData
-    }, null, 4);
+    }, null, 2);
 
     document.getElementById('credentialsOutput').innerText = output;
 }
 
-function randomString(length) {
+function randomStringGenerator(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
     for (let i = 0; i < length; i++) {
@@ -39,14 +65,4 @@ function randomString(length) {
         result += characters[randomIndex];
     }
     return result;
-}
-
-function generateRandomPassword(length) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let password = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length);
-        password += characters[randomIndex];
-    }
-    return password;
 }

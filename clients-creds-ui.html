@@ -20,8 +20,11 @@
     </div>
 
     <div class="container">
-        <label for="facilities">Facilities (comma-separated):</label>
-        <input type="text" id="facilities">
+        <label for="facilities">Facilities:</label>
+        <div id="facilitiesContainer">
+            <input type="text" id="facilityInput">
+            <button onclick="addFacility()">Add Facility</button>
+        </div>
     </div>
 
     <button onclick="generateClientCredentials()">Generate Client Credentials</button>
